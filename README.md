@@ -1,95 +1,29 @@
-import random
-import os
+# 🧱 Desafio Tetris Stack (Tema 3: CLI Edition)
 
-# Configurações do Jogo
-LARGURA = 6
-ALTURA = 10
-VAZIO = "."
-BLOCO = "█"
+Uma implementação minimalista de lógica de empilhamento (stacking logic) inspirada no clássico Tetris, rodando diretamente no terminal.
 
-def criar_grid():
-    return [[VAZIO for _ in range(LARGURA)] for _ in range(ALTURA)]
+## 📝 Sobre o Projeto
+Este projeto foi desenvolvido como parte de um desafio de lógica de programação. O objetivo é gerenciar uma matriz bidimensional (grid), lidando com colisões, gravidade e limpeza de arrays.
 
-def desenhar_grid(grid, pontos, proxima_peca):
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(f"\n🎮 TETRIS STACK - TEMA 3: CLI 🎮")
-    print(f"Pontuação: {pontos} | Próxima: {proxima_peca}")
-    print("=" * (LARGURA * 3 + 2))
-    
-    for linha in grid:
-        print("| " + "  ".join(linha) + " |")
-        
-    print("=" * (LARGURA * 3 + 2))
-    print("  " + "  ".join([str(i) for i in range(LARGURA)])) # Números das colunas
+**O que é o "Tema 3"?**
+Neste contexto, o Tema 3 refere-se à **Eficiência e Minimalismo**. O desafio foca na lógica pura do jogo (backend logic) sem a necessidade de interfaces gráficas pesadas ou bibliotecas externas.
 
-def soltar_peca(grid, coluna):
-    # Verifica de baixo para cima onde está o primeiro espaço vazio
-    for i in range(ALTURA - 1, -1, -1):
-        if grid[i][coluna] == VAZIO:
-            grid[i][coluna] = BLOCO
-            return True # Peça colocada com sucesso
-    return False # Coluna cheia (Game Over nessa coluna)
+## 🎮 Como Jogar
 
-def verificar_linhas(grid):
-    linhas_completas = 0
-    linhas_para_manter = []
-    
-    # Identifica linhas que não estão cheias
-    for linha in grid:
-        if VAZIO in linha:
-            linhas_para_manter.append(linha)
-        else:
-            linhas_completas += 1
-            
-    # Adiciona novas linhas vazias no topo para compensar as removidas
-    while len(linhas_para_manter) < ALTURA:
-        linhas_para_manter.insert(0, [VAZIO for _ in range(LARGURA)])
-        
-    # Atualiza o grid
-    for i in range(ALTURA):
-        grid[i] = linhas_para_manter[i]
-        
-    return linhas_completas
+### Objetivo
+Empilhar blocos para preencher linhas horizontais. Quando uma linha é preenchida, ela desaparece e você ganha pontos. O jogo acaba se você tentar colocar um bloco em uma coluna que já atingiu o topo.
 
-def main():
-    grid = criar_grid()
-    pontos = 0
-    jogando = True
-    
-    # Tipos de peças simplificadas para o desafio (1 bloco, 2 blocos verticais)
-    # Aqui simula-se apenas a lógica de "Stack" (empilhar)
-    
-    while jogando:
-        # Gera uma "peça" (aqui simplificada como um bloco único para lógica de stack)
-        # Para expandir o "Tema 3", você pode alterar isso para peças de tamanhos diferentes
-        proxima = BLOCO 
-        
-        desenhar_grid(grid, pontos, proxima)
-        
-        try:
-            coluna_escolhida = input("\nEscolha a coluna (0-5) ou 'S' para sair: ").strip().lower()
-            
-            if coluna_escolhida == 's':
-                break
-                
-            coluna = int(coluna_escolhida)
-            
-            if 0 <= coluna < LARGURA:
-                if not soltar_peca(grid, coluna):
-                    print("\n❌ Coluna cheia! Fim de Jogo.")
-                    jogando = False
-                else:
-                    linhas_limpas = verificar_linhas(grid)
-                    if linhas_limpas > 0:
-                        pontos += (linhas_limpas * 100)
-                        print(f"✨ Linha Completa! +{linhas_limpas*100} pts")
-            else:
-                print("⚠️ Coluna inválida!")
-                
-        except ValueError:
-            print("⚠️ Entrada inválida! Digite um número.")
+### Comandos
+* Digite o número da **Coluna (0 a 5)** onde deseja soltar o bloco.
+* Pressione `Enter` para confirmar.
+* Digite `S` para sair.
 
-    print(f"\n🏁 Jogo Encerrado! Pontuação Final: {pontos}")
+## 🛠️ Instalação e Execução
 
-if __name__ == "__main__":
-    main()
+### Pré-requisitos
+* Python 3.x instalado.
+
+### Rodando o Jogo
+1. Clone o repositório:
+   ```bash
+   git clone [https://github.com/SEU-USUARIO/tetris-stack-challenge.git](https://github.com/SEU-USUARIO/tetris-stack-challenge.git)
