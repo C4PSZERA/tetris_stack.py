@@ -1,29 +1,55 @@
-# 🧱 Desafio Tetris Stack (Tema 3: CLI Edition)
+# 🧱 Tetris Stack: CLI Edition
 
-Uma implementação minimalista de lógica de empilhamento (stacking logic) inspirada no clássico Tetris, rodando diretamente no terminal.
+![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=flat-square&logo=python&logoColor=white)
+![Sem dependências](https://img.shields.io/badge/dependências-nenhuma-2ea44f?style=flat-square)
 
-## 📝 Sobre o Projeto
-Este projeto foi desenvolvido como parte de um desafio de lógica de programação. O objetivo é gerenciar uma matriz bidimensional (grid), lidando com colisões, gravidade e limpeza de arrays.
+Lógica de empilhamento inspirada no Tetris, rodando direto no terminal.
 
-**O que é o "Tema 3"?**
-Neste contexto, o Tema 3 refere-se à **Eficiência e Minimalismo**. O desafio foca na lógica pura do jogo (backend logic) sem a necessidade de interfaces gráficas pesadas ou bibliotecas externas.
+## 📝 Sobre o projeto
 
-## 🎮 Como Jogar
+Desafio de lógica de programação (Tema 3: **eficiência e minimalismo**). O foco é a lógica do jogo pura, sem interface gráfica e sem bibliotecas externas:
 
-### Objetivo
-Empilhar blocos para preencher linhas horizontais. Quando uma linha é preenchida, ela desaparece e você ganha pontos. O jogo acaba se você tentar colocar um bloco em uma coluna que já atingiu o topo.
+- **Grid 2D:** uma matriz de 6 colunas × 8 linhas
+- **Gravidade:** o bloco cai até a posição livre mais baixa da coluna
+- **Limpeza de linhas:** linha completa é removida e as de cima descem
+- **Colisão / game over:** soltar um bloco numa coluna cheia encerra o jogo
 
-### Comandos
-* Digite o número da **Coluna (0 a 5)** onde deseja soltar o bloco.
-* Pressione `Enter` para confirmar.
-* Digite `S` para sair.
+## 🎮 Como jogar
 
-## 🛠️ Instalação e Execução
+```bash
+git clone https://github.com/C4PSZERA/tetris_stack.py.git
+cd tetris_stack.py
+python tetris_stack.py
+```
 
-### Pré-requisitos
-* Python 3.x instalado.
+| Comando | Ação |
+|---|---|
+| `0` a `5` + `Enter` | Solta um bloco na coluna |
+| `S` | Sai do jogo |
 
-### Rodando o Jogo
-1. Clone o repositório:
-   ```bash
-   git clone [https://github.com/SEU-USUARIO/tetris-stack-challenge.git](https://github.com/SEU-USUARIO/tetris-stack-challenge.git)
+Cada linha completa vale **100 pontos**.
+
+```
+=================
+ Pontos: 100
+=================
+| . . . . . . |
+| . . . . . . |
+| . . . . . . |
+| . . . . . . |
+| . . . . . . |
+| . . . . . . |
+| . . # . . . |
+| # . # # . # |
++-------------+
+  0 1 2 3 4 5
+```
+
+## 💡 Próximas ideias
+
+- [ ] Peças com formatos diferentes (L, T, quadrado)
+- [ ] Ranking de pontuação salvo em arquivo
+
+---
+
+Feito por [C4PSZERA](https://github.com/C4PSZERA) 🦫
